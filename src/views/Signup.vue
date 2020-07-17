@@ -29,6 +29,15 @@
                 if (this.password !== this.password_confirmation){
                     alert('Incorrect password')
                 }
+                if (this.password === '') {
+                    alert('Password is required')
+                }
+                if (this.name === '') {
+                    alert('Username is required')
+                }
+                if (this.email === '') {
+                    alert('Email is reqired')
+                }
                 if (this.password && this.name && this.email) {
                     let data = {
                         name: this.name,
