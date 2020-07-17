@@ -1,20 +1,47 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <!-- <Particule> -->
+    <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+      <router-link to="/about">About</router-link><span v-if="isLoggedIn"> | <a @click="logout">Logout</a></span>
+    </div> -->
+    <!-- </Particule> -->
+    <Navbar />
     <router-view/>
   </div>
 </template>
+<script>
+// import Particule from './components/Particules';
+import Navbar from './components/Navbar'
 
+export default {
+  components: {
+    // Particule,
+    Navbar
+  },
+  computed : {
+      isLoggedIn : function(){ return this.$store.getters.isLoggedIn}
+    },
+        methods: {
+      logout: function () {
+        console.log(this.isLoggedIn);
+        this.$store.dispatch('LOGOUT')
+        .then(() => {
+          this.$router.push('/login')
+        })
+      }
+    },
+}
+</script>
 <style>
+@import url("./assets/css/style.css");
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: #2c3e50;
 }
 
 #nav {
@@ -23,7 +50,7 @@
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #ffffff;
 }
 
 #nav a.router-link-exact-active {
